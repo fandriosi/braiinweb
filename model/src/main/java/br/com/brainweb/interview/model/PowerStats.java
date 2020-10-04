@@ -1,12 +1,16 @@
 package br.com.brainweb.interview.model;
-import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import org.hibernate.annotations.ColumnDefault;
-import org.springframework.stereotype.Component;
-
+@Entity
 public class PowerStats {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
     private Integer strength;

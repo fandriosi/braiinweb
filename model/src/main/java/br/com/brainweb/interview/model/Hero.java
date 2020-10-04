@@ -2,14 +2,13 @@ package br.com.brainweb.interview.model;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.data.annotation.Id;
-import org.springframework.stereotype.Component;
-
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-
+@Entity
 public class Hero {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
     @Length(max=255)
@@ -18,7 +17,9 @@ public class Hero {
     @Length(max=255)
     private String race;
     @NotNull
-    private Long power_stats_id;
+    @OneToOne
+    @JoinColumn(name = "power_stats_id")
+    private PowerStats powerStats;
     @NotNull
     @ColumnDefault(value = "TRUE")
     private Boolean enabled;
@@ -53,12 +54,12 @@ public class Hero {
         this.race = race;
     }
 
-    public Long getPower_stats_id() {
-        return power_stats_id;
+    public PowerStats getPowerStats() {
+        return powerStats;
     }
 
-    public void setPower_stats_id(Long power_stats_id) {
-        this.power_stats_id = power_stats_id;
+    public void setPowerStats(PowerStats powerStats) {
+        this.powerStats = powerStats;
     }
 
     public Boolean getEnabled() {

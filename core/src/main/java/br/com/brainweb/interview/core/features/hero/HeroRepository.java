@@ -1,11 +1,8 @@
 package br.com.brainweb.interview.core.features.hero;
 
 import br.com.brainweb.interview.model.Hero;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-@Repository
-public class HeroRepository {
-    public void save(Hero hero){
-        save(hero);
-    }
+public interface HeroRepository extends CrudRepository<Hero, Long> {
+
 }
