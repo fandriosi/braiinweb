@@ -119,6 +119,27 @@ public class HeroControllerTest {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+    @Test
+    public void testControllerHeroG() throws Exception{
+        Hero hero = this.createThor();
+        hero.setName("Ragnaroque");
+        String json = StrJson.getJson(hero);
+        mockMvc.perform(MockMvcRequestBuilders.put("/hero")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isOk());
+    }
+    @Test
+    public void testControllerHeroH() throws Exception{
+        Hero hero = this.createThor();
+        String json = StrJson.getJson(hero);
+        mockMvc.perform(MockMvcRequestBuilders.delete("/hero0")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(status().isOk());
+    }
     private Hero createThor(){
         Hero hero = new Hero();
         PowerStats heroPower = new PowerStats();
