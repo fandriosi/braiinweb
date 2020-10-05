@@ -1,4 +1,5 @@
-package br.com.brainweb.interview.core.features.hero;
+package br.com.brainweb.interview.core.features.powerstats;
+import br.com.brainweb.interview.core.features.hero.StrJson;
 import br.com.brainweb.interview.model.PowerStats;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
