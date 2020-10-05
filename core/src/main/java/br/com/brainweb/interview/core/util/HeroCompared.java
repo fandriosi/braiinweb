@@ -3,7 +3,7 @@ package br.com.brainweb.interview.core.util;
 import br.com.brainweb.interview.model.Hero;
 import br.com.brainweb.interview.model.PowerStats;
 
-public class HeroComparad {
+public class HeroCompared {
     public Hero getHeroCompared(Hero hero, Hero hero1){
         if(sumPower(hero) > sumPower(hero1))
             return hero;

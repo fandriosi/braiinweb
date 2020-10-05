@@ -1,6 +1,7 @@
 package br.com.brainweb.interview.core.features.hero;
 
 import br.com.brainweb.interview.core.features.powerstats.PowerStatsRepository;
+import br.com.brainweb.interview.core.util.HeroCompared;
 import br.com.brainweb.interview.model.Hero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,18 @@ public class HeroController {
         if(hero != null)
             return new ResponseEntity<>(hero, HttpStatus.OK);
         else
-            return  new ResponseEntity<>(null, HttpStatus.NOT_EXTENDED);
+            return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/hero/{heroId}/{hero1Id}")
+    public @ResponseBody ResponseEntity<Hero> comparedHeroes(@PathVariable("heroId") UUID heroId,
+                                                             @PathVariable("hero1Id") UUID hero1Id){
+        Hero hero = repository.findById(heroId).get();
+        Hero hero1 = repository.findById(heroId).get();
+        if(hero != null && hero1 != null)
+            return new ResponseEntity<>(new HeroCompared().getHeroCompared(hero, hero1), HttpStatus.OK);
+        else
+            return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/hero/{name}")

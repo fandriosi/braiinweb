@@ -1,7 +1,6 @@
 package br.com.brainweb.interview.core.features.hero;
 
-import br.com.brainweb.interview.core.features.powerstats.PowerStatsRepository;
-import br.com.brainweb.interview.core.util.HeroComparad;
+import br.com.brainweb.interview.core.util.HeroCompared;
 import br.com.brainweb.interview.model.Hero;
 import br.com.brainweb.interview.model.PowerStats;
 import org.junit.Test;
@@ -58,7 +57,7 @@ public class HeroComparedIT {
     public void comparedHeroes(){
         Hero hero = this.createCapitao();
         Hero hero1 = createThor();
-        Hero hero2 = new HeroComparad().getHeroCompared(hero, hero1);
+        Hero hero2 = new HeroCompared().getHeroCompared(hero, hero1);
         assertEquals("Thor", hero2.getName());
         assertEquals(Race.DIVINE.name(), hero2.getRace());
     }
