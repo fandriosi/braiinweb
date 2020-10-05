@@ -42,7 +42,7 @@ public class HeroController {
             return  new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/hero/{name}")
+    @GetMapping("/findByName/{name}")
     public @ResponseBody ResponseEntity<List<Hero>> findByName(@PathVariable("name") String nome){
         List<Hero> list  =repository.findByName(nome);
         if(list != null)

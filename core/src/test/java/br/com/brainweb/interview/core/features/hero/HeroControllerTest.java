@@ -28,8 +28,8 @@ public class HeroControllerTest {
     private PowerStatsRepository repository;
     @Autowired
     private MockMvc mockMvc;
-    @MockBean
-    private HeroRepository mockRepository;
+    @Autowired
+    private HeroRepository heroRepository;
     @Test
     public void testControllerHeroA() throws Exception{
         PowerStats model = new PowerStats();
@@ -60,7 +60,6 @@ public class HeroControllerTest {
                 .andExpect(jsonPath("$.power_stats.intelligence", is(4)))
                 .andExpect(jsonPath("$.race", is(Race.HUMAN.name())))
                 .andExpect(jsonPath("$.name", is("Volverine")));
-        verify(mockRepository,times(0)).save(any(Hero.class));
     }
 
     @Test
@@ -93,5 +92,67 @@ public class HeroControllerTest {
                 .andExpect(jsonPath("$.race", is(Race.HUMAN.name())))
                 .andExpect(jsonPath("$.name", is("Volverine")));
     }
-
+    @Test
+    public void testControllerHeroC() throws Exception{
+        UUID id = UUID.randomUUID();
+        Hero hero = new Hero();
+        hero.setId(id);
+        mockMvc.perform(MockMvcRequestBuilders.get("/hero/"+hero.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+    @Test
+    public void testControllerHeroD() throws Exception{
+        Hero hero = this.createThor();
+        mockMvc.perform(MockMvcRequestBuilders.get("/findByName".concat("/").concat(hero.getName()))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+    @Test
+    public void testControllerHeroF() throws Exception{
+        Hero hero = this.createThor();
+        Hero hero1 = this.creatCaptao();
+        mockMvc.perform(MockMvcRequestBuilders.get("/hero/"+hero.getId()+"/"+hero1.getId())
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+    private Hero createThor(){
+        Hero hero = new Hero();
+        PowerStats heroPower = new PowerStats();
+        heroPower.setAgility(4);
+        heroPower.setStrength(10);
+        heroPower.setDexterity(8);
+        heroPower.setIntelligence(8);
+        heroPower.setCreated_at(new Date(2020,9,05));
+        heroPower.setUpdated_at(new Date(2020,9,05));
+        PowerStats stats = repository.save(heroPower);
+        hero.setName("Thor");
+        hero.setRace(Race.DIVINE.name());
+        hero.setPowerStats(heroPower);
+        hero.setEnabled(true);
+        hero.setCreated_at(new Date(2020,9,05));
+        hero.setCreated_at(new Date(2020,9,05));
+        return heroRepository.save(hero);
+    }
+    private Hero creatCaptao(){
+        Hero hero = new Hero();
+        PowerStats heroPower = new PowerStats();
+        heroPower.setAgility(4);
+        heroPower.setStrength(7);
+        heroPower.setDexterity(8);
+        heroPower.setIntelligence(9);
+        heroPower.setCreated_at(new Date(2020,9,05));
+        heroPower.setUpdated_at(new Date(2020,9,05));
+        PowerStats stats = repository.save(heroPower);
+        hero.setName("Capitao Americao");
+        hero.setRace(Race.HUMAN.name());
+        hero.setPowerStats(heroPower);
+        hero.setEnabled(true);
+        hero.setCreated_at(new Date(2020,9,05));
+        hero.setCreated_at(new Date(2020,9,05));
+        return heroRepository.save(hero);
+    }
 }
