@@ -1,15 +1,21 @@
 package br.com.brainweb.interview.model;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.time.LocalDate;
+import java.util.UUID;
+
 @Entity
+@Table(name="hero", schema = "interview_service")
 public class Hero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Type(type="org.hibernate.type.PostgresUUIDType")
+    private UUID id;
     @NotNull
     @Length(max=255)
     private String name;
@@ -25,16 +31,18 @@ public class Hero {
     private Boolean enabled;
     @NotNull
     @ColumnDefault(value = "CURRENT_TIMESTAMP")
-    private LocalDate created_at;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created_at;
     @NotNull
     @ColumnDefault(value = "CURRENT_TIMESTAMP")
-    private LocalDate updated_at;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updated_at;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -70,19 +78,19 @@ public class Hero {
         this.enabled = enabled;
     }
 
-    public LocalDate getCreated_at() {
+    public Date getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDate created_at) {
+    public void setCreated_at(Date created_at) {
         this.created_at = created_at;
     }
 
-    public LocalDate getUpdated_at() {
+    public Date getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDate updated_at) {
+    public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
     }
 }
