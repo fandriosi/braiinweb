@@ -85,7 +85,7 @@ public class HeroControllerTest {
         hero1.setCreated_at(new Date(2020,9,04));
         hero1.setUpdated_at(new Date(2020,9,04));
         String json = StrJson.getJson(hero1);
-        mockMvc.perform(MockMvcRequestBuilders.post("/hero")
+        mockMvc.perform(MockMvcRequestBuilders.put("/hero")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(json))
@@ -109,30 +109,22 @@ public class HeroControllerTest {
     }
     @Test
     public void testControllerHeroF() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/findByName")
+        mockMvc.perform(MockMvcRequestBuilders.get("/findByName".concat("/").concat(hero1.getName()))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
     @Test
     public void testControllerHeroG() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/hero/")
+        mockMvc.perform(MockMvcRequestBuilders.get("/hero")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
     @Test
     public void testControllerHeroH() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.put("/hero")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON)
-                .content(""))
-                .andExpect(status().isOk());
-    }
-    @Test
-    public void testControllerHeroI() throws Exception{
-        String json = StrJson.getJson("");
-        mockMvc.perform(MockMvcRequestBuilders.delete("/hero0")
+        String json = StrJson.getJson(hero1);
+        mockMvc.perform(MockMvcRequestBuilders.delete("/hero")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON)
                 .content(json))

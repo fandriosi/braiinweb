@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,6 +19,13 @@ import java.util.UUID;
 public class HeroController {
     @Autowired
     private HeroRepository repository;
+    @GetMapping("/hero")
+    public @ResponseBody ResponseEntity<List<Hero>> findAll(){
+        List<Hero> list = new ArrayList<>();
+        repository.findAll().forEach(list::add);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
     @PostMapping("/hero")
     public @ResponseBody ResponseEntity<Hero> createHero(@Valid @RequestBody Hero hero){
         Hero h = repository.save(hero);
