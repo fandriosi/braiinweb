@@ -36,7 +36,7 @@ public class HeroServiceIT {
         PowerStats stats =repository.save(model);
         Hero hero = new Hero();
         hero.setName("Iron Man");
-        hero.setPowerStats(stats);
+        hero.setPower_stats(stats);
         hero.setRace(Race.HUMAN.name());
         hero.setEnabled(true);
         hero.setCreated_at(new Date(2020,9,04));

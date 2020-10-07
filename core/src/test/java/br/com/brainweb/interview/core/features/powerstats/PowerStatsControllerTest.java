@@ -20,7 +20,7 @@ public class PowerStatsControllerTest {
     @Test
     public void testControllerPowerStats() throws Exception{
         PowerStats model = new PowerStats();
-        model.setStrength(4);
+        model.setStrength(6);
         model.setAgility(4);
         model.setDexterity(3);
         model.setIntelligence(4);
@@ -32,7 +32,7 @@ public class PowerStatsControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .content(json))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.strength", is(4)))
+                .andExpect(jsonPath("$.strength", is(6)))
                 .andExpect(jsonPath("$.agility", is(4)))
                 .andExpect(jsonPath("$.dexterity", is(3)))
                 .andExpect(jsonPath("$.intelligence", is(4)));

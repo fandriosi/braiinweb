@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.rmi.server.UID;
 import java.util.Date;
 import java.time.LocalDate;
 import java.util.UUID;
@@ -23,9 +24,8 @@ public class Hero {
     @Length(max=255)
     private String race;
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "power_stats_id")
-    private PowerStats powerStats;
+    @OneToOne()
+    private PowerStats power_stats;
     @NotNull
     @ColumnDefault(value = "TRUE")
     private Boolean enabled;
@@ -62,12 +62,12 @@ public class Hero {
         this.race = race;
     }
 
-    public PowerStats getPowerStats() {
-        return powerStats;
+    public PowerStats getPower_stats() {
+        return power_stats;
     }
 
-    public void setPowerStats(PowerStats powerStats) {
-        this.powerStats = powerStats;
+    public void setPower_stats(PowerStats power_stats) {
+        this.power_stats = power_stats;
     }
 
     public Boolean getEnabled() {

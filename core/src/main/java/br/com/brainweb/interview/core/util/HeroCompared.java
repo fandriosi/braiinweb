@@ -11,7 +11,7 @@ public class HeroCompared {
             return hero1;
     }
     private Integer sumPower(Hero hero){
-        PowerStats stats = hero.getPowerStats();
+        PowerStats stats = hero.getPower_stats();
         return stats.getAgility()+stats.getDexterity()+stats.getIntelligence()+stats.getStrength();
     }
 }

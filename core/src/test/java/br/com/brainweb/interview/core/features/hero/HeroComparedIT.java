@@ -32,7 +32,7 @@ public class HeroComparedIT {
         capitaoPower.setUpdated_at(new Date(2020,9,05));
         capitao.setName("Capitão America");
         capitao.setRace(Race.HUMAN.name());
-        capitao.setPowerStats(capitaoPower);
+        capitao.setPower_stats(capitaoPower);
         capitao.setEnabled(true);
         capitao.setCreated_at(new Date(2020,9,05));
         capitao.setCreated_at(new Date(2020,9,05));
@@ -47,7 +47,7 @@ public class HeroComparedIT {
         thorPower.setUpdated_at(new Date(2020,9,05));
         thor.setName("Thor");
         thor.setRace(Race.DIVINE.name());
-        thor.setPowerStats(thorPower);
+        thor.setPower_stats(thorPower);
         thor.setEnabled(true);
         thor.setCreated_at(new Date(2020,9,05));
         thor.setCreated_at(new Date(2020,9,05));
