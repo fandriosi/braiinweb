@@ -45,7 +45,7 @@ public class HeroController {
     public @ResponseBody ResponseEntity<Hero> comparedHeroes(@PathVariable("heroId") UUID heroId,
                                                              @PathVariable("hero1Id") UUID hero1Id){
         Optional<Hero> hero = repository.findById(heroId);
-        Optional<Hero>  hero1 = repository.findById(heroId);
+        Optional<Hero>  hero1 = repository.findById(hero1Id);
         if(hero.isPresent() && hero1.isPresent())
             return new ResponseEntity<>(new HeroCompared().getHeroCompared(hero.get(), hero1.get()), HttpStatus.OK);
         else

@@ -22,8 +22,9 @@ public class HeroControllerTest {
     @Autowired
     private PowerStatsRepository repository;
     @Autowired
-    private MockMvc mockMvc;
+    private HeroRepository heroRepository;
     @Autowired
+    private MockMvc mockMvc;
     private static PowerStats stats;
     private static Hero hero1;
     @Test
@@ -123,6 +124,16 @@ public class HeroControllerTest {
     }
     @Test
     public void testControllerHeroH() throws Exception{
+        Hero hero = getHero();
+        mockMvc.perform(MockMvcRequestBuilders.get("/hero".concat("/").concat(hero1.getId().toString()
+        ).concat("/").concat(hero.getId().toString()))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("Volverine Logan")));
+    }
+    @Test
+    public void testControllerHeroI() throws Exception{
         String json = StrJson.getJson(hero1);
         mockMvc.perform(MockMvcRequestBuilders.delete("/hero")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -131,4 +142,22 @@ public class HeroControllerTest {
                 .andExpect(status().isOk());
     }
 
+    private Hero getHero(){
+        PowerStats stats = new PowerStats();
+        stats.setStrength(6);
+        stats.setAgility(3);
+        stats.setDexterity(3);
+        stats.setIntelligence(3);
+        stats.setCreated_at(new Date(2020, 04,04));
+        stats.setUpdated_at(new Date(2020,02,04));
+        PowerStats s = repository.save(stats);
+        Hero hero = new Hero();
+        hero.setPower_stats(s);
+        hero.setName("Iron Man");
+        hero.setEnabled(true);
+        hero.setRace(Race.HUMAN.name());
+        hero.setCreated_at(new Date(2020,9,29));
+        hero.setUpdated_at(new Date(2020,9,20));
+        return heroRepository.save(hero);
+    }
 }
