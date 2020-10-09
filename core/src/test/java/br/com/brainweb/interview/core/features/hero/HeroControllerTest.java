@@ -1,6 +1,7 @@
 package br.com.brainweb.interview.core.features.hero;
 
-import br.com.brainweb.interview.core.features.powerstats.PowerStatsRepository;
+
+import br.com.brainweb.interview.core.features.powerstats.PowerStatsService;
 import br.com.brainweb.interview.model.Hero;
 import br.com.brainweb.interview.model.PowerStats;
 import org.junit.jupiter.api.Test;
@@ -20,9 +21,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class HeroControllerTest {
     @Autowired
-    private PowerStatsRepository repository;
+    private PowerStatsService statsServices;
     @Autowired
-    private HeroRepository heroRepository;
+    private HeroService heroService;
     @Autowired
     private MockMvc mockMvc;
     private static PowerStats stats;
@@ -150,7 +151,7 @@ public class HeroControllerTest {
         stats.setIntelligence(3);
         stats.setCreated_at(new Date(2020, 04,04));
         stats.setUpdated_at(new Date(2020,02,04));
-        PowerStats s = repository.save(stats);
+        PowerStats s = statsServices.save(stats);
         Hero hero = new Hero();
         hero.setPower_stats(s);
         hero.setName("Iron Man");
@@ -158,6 +159,6 @@ public class HeroControllerTest {
         hero.setRace(Race.HUMAN.name());
         hero.setCreated_at(new Date(2020,9,29));
         hero.setUpdated_at(new Date(2020,9,20));
-        return heroRepository.save(hero);
+        return heroService.save(hero);
     }
 }
