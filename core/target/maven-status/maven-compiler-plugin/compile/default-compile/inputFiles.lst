@@ -1,0 +1,11 @@
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/features/hero/HeroRepository.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/features/hero/HeroService.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/features/powerstats/PowerStatsController.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/features/hero/Race.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/features/powerstats/PowerStatsService.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/Application.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/features/powerstats/PowerStatsRepository.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/configuration/JdbcConfiguration.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/util/HeroCompared.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/features/hero/HeroController.java
+/home/andriosi/IdeaProjects/brainweb/core/src/main/java/br/com/brainweb/interview/core/configuration/WebConfiguration.java
